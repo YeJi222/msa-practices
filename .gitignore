@@ -1,0 +1,22 @@
+## Mac
+**/.DS.store
+
+## maven
+**/target/
+**/build/
+**/out
+
+## eclipse, sts
+**/.settings
+**/.classpath
+**/.project
+/.DS_Store
+
+**/.factorypath
+**/.sts4-cache
+**/.springBeans
+
+.idea
+
+## node
+**/node_modules
