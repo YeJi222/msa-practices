@@ -1,5 +1,6 @@
 ## Mac
 **/.DS.store
+.DS_Store
 
 ## maven
 **/target/
@@ -10,7 +11,6 @@
 **/.settings
 **/.classpath
 **/.project
-/.DS_Store
 
 **/.factorypath
 **/.sts4-cache
