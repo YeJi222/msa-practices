@@ -82,5 +82,3 @@
 	- Provisioning: 빌드 및 배포 패턴 
 		+ Travis CI(빌드), Jenkins(빌드,배포)*
 		+ Docker(배포)
-# msa-practices
-# msa-practices
