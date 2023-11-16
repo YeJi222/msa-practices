@@ -65,7 +65,7 @@ public class GuestbookApiController {
                 .buildAndExpand(no)
                 .toUri();
 		
-		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);
+		ResponseEntity<Map> response = restTemplate.exchange(uri, HttpMethod.DELETE, null, Map.class);
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(response);
