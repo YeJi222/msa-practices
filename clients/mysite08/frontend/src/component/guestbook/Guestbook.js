@@ -132,23 +132,16 @@ export default function Guestbook() {
                                     body: `password=${e.target.password.value}`
                                 });
 
-                                console.log(response);
-
                                 if (!response.ok) {
                                     throw new Error(`${response.status} ${response.statusText}`);
                                 }
 
                                 const json = await response.json();
-                                // test
-                                // console.log("json : ", json);
-                                // console.log("json : ", json.body);
-                                // console.log("json data: ", json.body.data);
-                                
-                                if (json.body.result !== 'success') {
-                                    throw json.body.message;
+                                if (json.result !== 'success') {
+                                    throw json.message;
                                 }
 
-                                if(!json.body.data) {
+                                if(!json.data) {
                                     setModalData( Object.assign({}, modalData, {
                                         password: '',
                                         errorMessage: '비밀번호가 틀립니다.'
@@ -163,7 +156,7 @@ export default function Guestbook() {
                                     errorMessage: null,
                                     open: false
                                 });
-                                setMessages(messages.filter((message) => message.no != json.body.data));
+                                setMessages(messages.filter((message) => message.no != json.data));
 
                             } catch (err) {
                                 console.error(err);
