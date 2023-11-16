@@ -57,8 +57,7 @@ public class GuestbookApiController {
 	@DeleteMapping("/{no}")
 	public ResponseEntity<?> delete(@PathVariable("no") Long no, @RequestParam(value="password", required=true, defaultValue="") String password) {
 		log.info("Request[DELETE /api/guestbook/{no}]:" + no);
-		
-		System.out.println("clients - no : " + no + ", password : " + password);
+		// log.info("clients - no : " + no + ", password : " + password);
 		
 		URI uri = UriComponentsBuilder.fromUriString("http://service-mysite08/{no}")
                 .queryParam("password", password)
