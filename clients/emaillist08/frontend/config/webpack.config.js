@@ -41,12 +41,12 @@ module.exports = function(env) {
         devtool: "eval-source-map",
         devServer: {
             host: '0.0.0.0',
-            port: 9090,
+            port: 9091,
             liveReload: true,
             compress: true,
             hot: false,
             proxy: {
-                '/api': 'http://localhost:8080'
+                '/api': 'http://localhost:8081'
             },
             static: {
                 directory: path.resolve('./public')
