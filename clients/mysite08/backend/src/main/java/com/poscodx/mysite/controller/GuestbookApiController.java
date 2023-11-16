@@ -1,5 +1,6 @@
 package com.poscodx.mysite.controller;
 
+import java.net.URI;
 import java.util.Map;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.poscodx.mysite.vo.GuestbookVo;
 
@@ -56,7 +58,14 @@ public class GuestbookApiController {
 	public ResponseEntity<?> delete(@PathVariable("no") Long no, @RequestParam(value="password", required=true, defaultValue="") String password) {
 		log.info("Request[DELETE /api/guestbook/{no}]:" + no);
 		
-		ResponseEntity<String> response = restTemplate.exchange("http://service-mysite08/{no}", HttpMethod.DELETE, null, String.class, no, password);
+		System.out.println("clients - no : " + no + ", password : " + password);
+		
+		URI uri = UriComponentsBuilder.fromUriString("http://service-mysite08/{no}")
+                .queryParam("password", password)
+                .buildAndExpand(no)
+                .toUri();
+		
+		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(response);

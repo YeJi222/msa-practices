@@ -47,6 +47,8 @@ public class GuestbookApiController {
 	public ResponseEntity<?> delete(@PathVariable("no") Long no, @RequestParam(value="password", required=true, defaultValue="") String password) {
 		log.info("Request[DELETE /]:" + no);
 		
+		System.out.println("service - no : " + no + ", password : " + password);
+		
 		Boolean result = guestbookService.deleteContents(no, password);
 		System.out.println(result);
 		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(result ? no : null));

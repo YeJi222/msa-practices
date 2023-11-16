@@ -24,7 +24,7 @@ public class GuestbookRepository {
 	}
 	
 	public Boolean delete(GuestbookVo vo) {
-		System.out.println(vo);
+		// System.out.println(vo);
 		return 1 == sqlSession.delete("guestbook.delete", vo);
 	}
 }
