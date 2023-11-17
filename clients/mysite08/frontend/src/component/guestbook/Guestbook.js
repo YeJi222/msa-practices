@@ -141,6 +141,9 @@ export default function Guestbook() {
                                     throw json.message;
                                 }
 
+                                // test
+                                console.log("json :", json);
+
                                 if(!json.data) {
                                     setModalData( Object.assign({}, modalData, {
                                         password: '',

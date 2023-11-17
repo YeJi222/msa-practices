@@ -50,7 +50,7 @@ export default function Guestbook() {
     };
 
     const addMessage = async (message) => {
-        const response = await fetch('/api/guestbook', {
+        const response = await fetch(`${process.env.API_URL}/api/guestbook`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function Guestbook() {
         const messagesInState = this ? messagesRef.current : messages;
         const startNo = messagesInState.length === 0 ? 0 : messagesInState[messagesInState.length - 1].no;
         try {
-            const response = await fetch(`/api/guestbook?no=${startNo}`, {
+            const response = await fetch(`${process.env.API_URL}/api/guestbook?no=${startNo}`, {
                 method: 'get',
                 headers: {
                     'Accept': 'application/json'
@@ -123,7 +123,7 @@ export default function Guestbook() {
                         className={styles.DeleteForm}
                         onSubmit={async (e) => {
                             try {
-                                const response = await fetch(`/api/guestbook/${e.target.no.value}`, {
+                                const response = await fetch(`${process.env.API_URL}/api/guestbook/${e.target.no.value}`, {
                                     method: 'delete',
                                     headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -132,20 +132,13 @@ export default function Guestbook() {
                                     body: `password=${e.target.password.value}`
                                 });
 
-                                console.log(response);
-
                                 if (!response.ok) {
                                     throw new Error(`${response.status} ${response.statusText}`);
                                 }
 
                                 const json = await response.json();
-                                // test
-                                // console.log("json :", json);
-                                // console.log("json body :", json.body);
-                                // console.log("json data :", json.body.data);
-                                
                                 if (json.result !== 'success') {
-                                    throw json.body.message;
+                                    throw json.message;
                                 }
 
                                 if(!json.data) {
