@@ -58,4 +58,5 @@ public class GuestbookController {
 		ResponseEntity<?> response = restTemplate.exchange(String.format("http://service-guestbook/%d", no), HttpMethod.DELETE, requestEntity, Map.class);
 		return ResponseEntity.status(HttpStatus.OK).body(response.getBody());
 	}
+	
 }

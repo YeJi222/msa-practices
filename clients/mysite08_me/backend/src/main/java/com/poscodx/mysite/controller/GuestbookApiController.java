@@ -4,9 +4,14 @@ import java.net.URI;
 import java.util.Map;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,13 +65,23 @@ public class GuestbookApiController {
 		// log.info("clients - no : " + no + ", password : " + password);
 		
 		URI uri = UriComponentsBuilder.fromUriString("http://service-mysite08/{no}")
-                .queryParam("password", password)
+                // .queryParam("password", password)
                 .buildAndExpand(no)
                 .toUri();
 		
-		ResponseEntity<Map> response = restTemplate.exchange(uri, HttpMethod.DELETE, null, Map.class);
+		// Header
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+		// Body
+		MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+		body.add("password", password);
+
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+		
+		ResponseEntity<?> response = restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, Map.class);
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body(response);
+				.body(response.getBody());
 	}
 }

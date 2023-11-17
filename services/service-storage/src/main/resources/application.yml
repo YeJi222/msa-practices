@@ -46,7 +46,7 @@ eureka:
          defaultZone: http://localhost:8761/eureka
 
 storage:
-   location: /Users/kickscar/service-storage/assets
+   location: /Users/yeji/service-storage/assets
    httpd:
       host: localhost
       port: 9999
@@ -90,10 +90,10 @@ eureka:
       fetchRegistry: true
       registerWithEureka: true
       serviceUrl:
-         defaultZone: http://192.168.0.172:8761/eureka
+         defaultZone: http://192.168.64.9:8761/eureka
 
 storage:
    location: /service-storage/assets
    httpd:
-      host: 192.168.0.172
+      host: 192.168.64.9
       port: 9999
