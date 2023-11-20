@@ -22,6 +22,7 @@ public class ServiceStorage {
 			@Autowired
 			private SimpleHttpd httpd;
 
+			// thread로 
 			@Override
 			public void run(ApplicationArguments args) throws Exception {
 				httpd.start();
